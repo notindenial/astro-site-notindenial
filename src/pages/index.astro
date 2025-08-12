@@ -184,7 +184,6 @@ const stack = [
       </section>
 
       <!-- Contact Section -->
-      <!-- Contact Section -->
       <section class="animate">
         <div>
           <p class="font-semibold text-black dark:text-white">
@@ -193,85 +192,21 @@ const stack = [
           <p>
             Reach out to me via email or on social media.
           </p>
-      
-          <!-- Social list -->
           <div class="grid grid-cols-4 gap-y-2 mt-4 auto-cols-min">
-            {SOCIALS.map((social) => (
-              <>
-                <div class="col-span-1 flex items-center gap-1">
-                  <span class="whitespace-nowrap truncate">
-                    {social.NAME}
+            {SOCIALS.map(social => (
+              <div class="col-span-1 flex items-center gap-1">
+                <span class="whitespace-nowrap truncate">
+                  {social.NAME}
+                </span>
+              </div>
+              <div class="col-span-3 truncate">
+                <a href={social.HREF} target="_blank" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+                  <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+                    {social.TEXT}
                   </span>
-                </div>
-                <div class="col-span-3 truncate">
-                  <a
-                    href={social.HREF}
-                    target="_blank"
-                    class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
-                  >
-                    <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                      {social.TEXT}
-                    </span>
-                  </a>
-                </div>
-              </>
+                </a>
+              </div>
             ))}
-          </div>
-      
-          <!-- LinkedIn profile badge (auto light/dark) -->
-          <div class="mt-8 flex justify-center">
-            <div id="li-badge-root"></div>
-          </div>
-      
-          <script is:inline>
-            // Render LinkedIn profile badge and keep it in sync with light/dark mode
-            (function () {
-              const vanity = "daniel-lin-70b8b2264";
-              const profileUrl = `https://www.linkedin.com/in/${vanity}?trk=profile-badge`;
-              const htmlEl = document.documentElement;
-              const container = document.getElementById("li-badge-root");
-      
-              function currentTheme() {
-                return htmlEl.classList.contains("dark") ? "dark" : "light";
-              }
-      
-              function renderBadge() {
-                if (!container) return;
-                container.innerHTML = "";
-      
-                const wrapper = document.createElement("div");
-                wrapper.className = "badge-base LI-profile-badge";
-                wrapper.setAttribute("data-locale", "en_US");
-                wrapper.setAttribute("data-size", "medium");      // 'small' also works
-                wrapper.setAttribute("data-theme", currentTheme()); // light/dark
-                wrapper.setAttribute("data-type", "HORIZONTAL");  // or 'VERTICAL'
-                wrapper.setAttribute("data-vanity", vanity);
-                wrapper.setAttribute("data-version", "v1");
-      
-                const a = document.createElement("a");
-                a.className = "badge-base__link LI-simple-link";
-                a.href = profileUrl;
-                a.textContent = "Daniel Lin";
-                wrapper.appendChild(a);
-      
-                container.appendChild(wrapper);
-      
-                // Load (or reload) LinkedIn’s script so it hydrates the badge
-                const s = document.createElement("script");
-                s.src = "https://platform.linkedin.com/badges/js/profile.js";
-                s.async = true;
-                s.defer = true;
-                container.appendChild(s);
-              }
-      
-              // Initial render
-              renderBadge();
-      
-              // Re-render when Tailwind's dark mode toggles (<html> class changes)
-              const mo = new MutationObserver(renderBadge);
-              mo.observe(htmlEl, { attributes: true, attributeFilter: ["class"] });
-            })();
-          </script>
         </div>
       </section>
     </div>
